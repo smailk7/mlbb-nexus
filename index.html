@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jelajahi hero dan koleksi skin Mobile Legends: Bang Bang dalam katalog komunitas bergaya neon premium.">
+  <meta name="theme-color" content="#0b0715">
+  <title>MLBB Nexus — Hero & Skin Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="MLBB Nexus beranda">
+      <span class="brand-mark">N<span>✦</span></span>
+      <span class="brand-copy"><strong>MLBB <em>NEXUS</em></strong><small>HERO & SKIN ARCHIVE</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <a class="active" href="#home">Beranda</a><a href="#heroes">Hero</a><a href="#skins">Skin Gallery</a>
+    </nav>
+    <a class="header-cta" href="#heroes">Jelajahi <span>↗</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+  </header>
+
+  <main id="home">
+    <section class="hero-banner">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> COMMUNITY DATABASE <span class="eyebrow-line"></span> MLBB</div>
+        <h1>ENTER THE<br><span>NEXUS</span></h1>
+        <p class="hero-description">Jelajahi dunia hero dan skin Mobile Legends: Bang Bang. Temukan role, kenali karakter, dan intip koleksi skin favoritmu.</p>
+        <div class="hero-actions"><a class="btn-primary" href="#heroes">EXPLORE HEROES <span>↗</span></a><a class="btn-ghost" href="#skins"><span class="play-icon">▶</span> LIHAT SKIN</a></div>
+        <div class="hero-meta"><div><strong id="heroCount">—</strong><span>HERO DI KATALOG</span></div><i></i><div><strong>6</strong><span>ROLE UTAMA</span></div><i></i><div><strong>∞</strong><span>JELAJAHI LAGI</span></div></div>
+      </div>
+      <div class="hero-art" aria-label="Ilustrasi dekoratif fantasi neon">
+        <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div><div class="art-core"><span>✦</span><b>N</b></div>
+        <div class="floating-tag tag-top"><span class="tag-icon">✧</span><span><small>ARCHIVE STATUS</small><strong>COMMUNITY DATA</strong></span></div>
+        <div class="floating-tag tag-bottom"><span class="tag-spark">✦</span><span><small>YOUR NEXT PICK</small><strong>START EXPLORING</strong></span></div>
+        <div class="art-caption">LEGENDS NEVER FADE <span>✦</span></div>
+      </div>
+      <div class="banner-grid"></div>
+    </section>
+
+    <section class="quick-stats" aria-label="Statistik katalog">
+      <div class="stat-item"><span class="stat-icon">◈</span><div><strong id="statHeroes">Memuat…</strong><small>HERO TERDATA</small></div></div>
+      <div class="stat-item"><span class="stat-icon">✧</span><div><strong>6</strong><small>KATEGORI ROLE</small></div></div>
+      <div class="stat-item"><span class="stat-icon">◎</span><div><strong>LIVE</strong><small>SUMBER DATA KOMUNITAS</small></div></div>
+      <div class="stat-note">Bukan situs resmi Moonton.<br>Data dan aset mengikuti sumber masing-masing.</div>
+    </section>
+
+    <section class="content-section" id="heroes">
+      <div class="section-heading"><div><div class="eyebrow">CHOOSE YOUR LEGEND</div><h2>HERO <span>DATABASE</span></h2><p>Temukan hero berdasarkan nama atau role favoritmu.</p></div><div class="section-number">01 <span>/ HEROES</span></div></div>
+      <div class="filters-panel">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Cari nama hero..." autocomplete="off"><kbd>SEARCH</kbd></label>
+        <div class="role-filters" id="roleFilters" aria-label="Filter role"><button class="role-chip active" data-role="all">Semua</button><button class="role-chip" data-role="Tank">Tank</button><button class="role-chip" data-role="Fighter">Fighter</button><button class="role-chip" data-role="Assassin">Assassin</button><button class="role-chip" data-role="Mage">Mage</button><button class="role-chip" data-role="Marksman">Marksman</button><button class="role-chip" data-role="Support">Support</button></div>
+      </div>
+      <div class="results-line"><span id="resultsLabel">Menghubungkan ke katalog hero…</span><button id="resetFilters" class="text-button">Reset filter ↺</button></div>
+      <div class="hero-grid" id="heroGrid" aria-live="polite"><div class="loading-state"><span class="loader"></span><p>Memuat katalog hero…</p></div></div>
+      <div class="load-note" id="loadNote">Data katalog dapat berubah mengikuti sumber komunitas.</div>
+    </section>
+
+    <section class="skin-section" id="skins">
+      <div class="section-heading"><div><div class="eyebrow">STYLE YOUR LEGEND</div><h2>SKIN <span>GALLERY</span></h2><p>Jelajahi skin dari halaman detail hero. Katalog skin ditampilkan sesuai data yang tersedia.</p></div><div class="section-number">02 <span>/ SKINS</span></div></div>
+      <div class="skin-feature">
+        <div class="skin-feature-symbol">✧</div><div class="skin-feature-copy"><span class="mini-label">YOUR COLLECTION STARTS HERE</span><h3>Setiap skin punya<br><span>ceritanya sendiri.</span></h3><p>Pilih hero di database, lalu buka detail untuk melihat skin dan visual yang tersedia dari sumber data.</p><a href="#heroes" class="btn-primary">PILIH HERO <span>↗</span></a></div>
+        <div class="skin-rings"><div class="ring ring-one"></div><div class="ring ring-two"></div><div class="ring ring-three"></div><span>SKIN<br>ARCHIVE</span></div>
+      </div>
+      <div class="skin-gallery" id="skinGallery"><div class="skin-placeholder"><span>✦</span><strong>GALERI MENUNGGU PILIHANMU</strong><small>Buka detail hero untuk menampilkan data skin yang tersedia.</small></div></div>
+      <p class="source-credit">Sumber data katalog: <a href="https://mlbbdex.com/id/api-doc" target="_blank" rel="noopener noreferrer">MLBBDex API documentation</a>. Aset dan merek Mobile Legends: Bang Bang milik pemegang hak masing-masing.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#home"><span class="brand-mark">N<span>✦</span></span><span class="brand-copy"><strong>MLBB <em>NEXUS</em></strong><small>HERO & SKIN ARCHIVE</small></span></a><p>Fan-made community archive · Tidak berafiliasi dengan Moonton.</p><a href="#home" class="back-top">KEMBALI KE ATAS ↑</a></footer>
+
+  <div class="modal-backdrop" id="heroModal" aria-hidden="true">
+    <section class="hero-modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+      <button class="modal-close" id="modalClose" aria-label="Tutup detail">×</button>
+      <div class="modal-art" id="modalArt"><span class="modal-monogram">✦</span></div>
+      <div class="modal-content"><div class="eyebrow">HERO PROFILE</div><h2 id="modalName">Hero Name</h2><div class="modal-badges" id="modalBadges"></div><p id="modalDescription">Memuat detail hero…</p><div class="modal-divider"></div><div class="modal-skin-heading"><h3>SKIN COLLECTION</h3><span id="modalSkinCount">—</span></div><div class="modal-skins" id="modalSkins"></div><p class="modal-source">Detail dan visual berasal dari sumber komunitas; ketersediaan data dapat berbeda.</p></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
 
