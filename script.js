@@ -67,26 +67,64 @@ function renderCards() {
       <div class="card-info"><h3 title="${escapeHTML(hero.name)}">${escapeHTML(hero.name)}</h3><p>${escapeHTML(hero.lane || hero.position || 'Hero MLBB')}</p><div class="card-footer"><span>LIHAT PROFIL</span><span class="card-arrow">↗</span></div></div>
     </article>`).join('');
 }
+
 async function loadHeroes() {
+  const note = document.querySelector('#loadNote');
+  const grid = document.querySelector('#heroGrid');
+
+  note.textContent = 'Menghubungkan ke katalog hero...';
+  grid.innerHTML = `
+    <div class="loading-state">
+      <span class="loader"></span>
+      <p>Memuat katalog hero...</p>
+    </div>
+  `;
+
   try {
-    const response = await fetch(`${API_BASE}/heroes`, {headers:{'Accept':'application/json'}});
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const response = await fetch(
+      'https://mlbbdex.com/api/v1/heroes',
+      {
+        headers: { Accept: 'application/json' },
+        signal: AbortSignal.timeout(10000)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('API error: HTTP ' + response.status);
+    }
+
     const payload = await response.json();
-    const list = Array.isArray(payload) ? payload : (payload.data || payload.heroes || payload.results || payload.items || []);
-    if (!Array.isArray(list) || !list.length) throw new Error('Format data tidak dikenal');
+    const list = Array.isArray(payload)
+      ? payload
+      : payload.data || payload.heroes || [];
+
+    if (!Array.isArray(list) || list.length === 0) {
+      throw new Error('Data hero kosong');
+    }
+
     state.heroes = list.map(normalizeHero);
     setHeroCounts(state.heroes.length);
-    $('#loadNote').textContent = `Memuat ${state.heroes.length} entri dari MLBBDex. Data komunitas dapat berubah dan belum tentu mencakup seluruh aset terbaru.`;
+
+    note.textContent =
+      'Katalog berhasil dimuat dari MLBBDex.';
+
     renderCards();
+
   } catch (error) {
-    // Keep the page usable when the community API is offline or blocked by browser CORS.
+    console.error('Gagal memuat hero:', error);
+
     state.heroes = FALLBACK_HEROES.map(normalizeHero);
     setHeroCounts('—');
-    $('#loadNote').textContent = 'API komunitas tidak dapat dijangkau saat ini. Yang ditampilkan adalah daftar contoh terbatas, bukan katalog lengkap. Coba muat ulang saat koneksi API tersedia.';
+
+    note.textContent =
+      'API gagal dimuat. Menampilkan hero contoh. ' +
+      'Periksa koneksi atau Console browser.';
+
     renderCards();
-    showToast('Katalog live tidak tersedia. Menampilkan contoh hero terbatas.');
+    showToast('API gagal: ' + error.message);
   }
 }
+
 async function openHero(slug) {
   const hero = state.heroes.find((item) => item.slug === slug) || state.heroes.find((item) => item.name.toLowerCase() === String(slug).toLowerCase());
   if (!hero) return;
